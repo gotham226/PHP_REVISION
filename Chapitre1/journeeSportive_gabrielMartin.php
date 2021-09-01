@@ -2,14 +2,11 @@
 <html lang="fr">
     <?php 
     require('htmlToPhp.inc.php');
-    
- 
-
-require_once('htmlToPhp.inc.php');
+    $l = activitySelect();
 
 if (isset($_POST['envoi'])) {
 
-$nom = filter_input(INPUT_POST,"name",FILTER_SANITIZE_STRING);
+$nom = filter_input(INPUT_POST,"nom",FILTER_SANITIZE_STRING);
 $prenom = filter_input(INPUT_POST,"prenom",FILTER_SANITIZE_STRING);
 
 
@@ -56,16 +53,32 @@ else{
             </p>
             
             <p>Classe
-            <select name="classe">
-                <option>p2a</option>
-                <option>p2b</option>
-                <option>p2c</option>
-            </select>
+<?php
+            $classe = classeSelect();
+        
+            
+            echo " <select name='classe'>";
+            foreach ($classe as $nomClasse) {
+            echo "<option value='$nomClasse'>$nomClasse</option>";
+
+        }
+        
+        echo "</select>
+        <br>
+        <br>";
+
+    }
+    ?>
+
+            
             </p>
             <p>---------------------------------------------------------</p>
             <?php 
-            afficheSelect("choix");
-            ?>           
+           
+           afficheSelect("choix");
+            
+                    ?>
+                    
            
             <p>
                 <input type="submit" name="envoi" value="Envoyer">
@@ -74,4 +87,4 @@ else{
         </form>
     </body>
 </html>
-<?php }?>
+<?php ?>
