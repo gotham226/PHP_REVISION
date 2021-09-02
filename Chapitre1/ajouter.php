@@ -13,7 +13,7 @@
 
     if (isset($_POST['envoi'])) {
 
-        if (isset($_POST['activity'])) {
+        if (isset($_POST['activity']) !="") {
             $activity = filter_input(INPUT_POST, 'activity');
 
             $retour = insertActivity($activity);
@@ -24,7 +24,7 @@
 }       else{
 
     if(isset($_POST['envoi2'])){
-        if (isset($_POST['classe'])) {
+        if (isset($_POST['classe']) != "" ) {
             $classe = filter_input(INPUT_POST, 'classe');
 
             $retour = insertClasse($classe);

@@ -19,6 +19,8 @@ function afficheSelect($name){
 
 }
 
+
+
 function conexBase(){
 
     try {
@@ -34,21 +36,26 @@ function conexBase(){
         return $dbh;
 }
 
+
+
 function deconexBase(){
     $dbh = null;
 }
 
+
+
 function activitySelect(){
+    $dbh = conexBase();
 
-$dbh = conexBase();
+    $reponse = $dbh->query("SELECT idActivite,nomActivite FROM activite;");
 
-$reponse = $dbh->query("SELECT nomActivite FROM activite;");
-
-// fetch() -> Prendre ligne par ligne la reponse 
-$lignes = $reponse->fetchAll(PDO::FETCH_COLUMN);
-return $lignes;
+    // fetch() -> Prendre ligne par ligne la reponse 
+    $lignes = $reponse->fetchAll();
+    return $lignes;
 
 }
+
+
 function classeSelect(){
     $dbh = conexBase();
 
@@ -60,6 +67,8 @@ function classeSelect(){
 
 }
 
+
+
 function insertActivity($activity){
 
     $dbh = conexBase();
@@ -68,6 +77,8 @@ function insertActivity($activity){
     
     return $reponse;
 }
+
+
 
 function insertClasse($classe){
     
@@ -78,6 +89,31 @@ function insertClasse($classe){
     return $reponse;
 }
 
+
+function modifieActivity($id) {
+    // capture des codes erreurs
+    
+        // connexion à la base
+        $dbh = conexBase();
+        // requête pour créer supprimer un article
+        $reponse = $dbh->exec("UPDATE article SET titre='$titre', texte='$texte' WHERE id='$id';");
+        
+    
+    // fermeture connexion à la base
+    deconexBase($dbh);
+    return $reponse;
+}
+
+function afficherMotModifier($idActivity){
+
+    $dbh = conexBase();
+
+    $reponse = $dbh->query("SELECT nomActivite FROM activite WHERE idActivite='$idActivity';");
+
+    $article = $reponse->fetch(PDO::FETCH_COLUMN);
+
+    return $article;
+}
 
 
 ?>
