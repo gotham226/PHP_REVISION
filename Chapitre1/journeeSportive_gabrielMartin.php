@@ -2,7 +2,7 @@
 <html lang="fr">
     <?php 
     require('htmlToPhp.inc.php');
-    $l = activitySelect();
+    $activites = activitySelect();
 
 if (isset($_POST['envoi'])) {
 

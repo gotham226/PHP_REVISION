@@ -60,6 +60,23 @@ function classeSelect(){
 
 }
 
+function insertActivity($activity){
+
+    $dbh = conexBase();
+
+    $reponse = $dbh->exec("INSERT INTO activite(nomActivite) VALUES ('$activity');");
+    
+    return $reponse;
+}
+
+function insertClasse($classe){
+    
+    $dbh = conexBase();
+
+    $reponse = $dbh->exec("INSERT INTO classe(nomClasse) VALUES ('$classe');");
+    
+    return $reponse;
+}
 
 
 
