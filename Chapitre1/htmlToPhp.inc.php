@@ -90,13 +90,13 @@ function insertClasse($classe){
 }
 
 
-function modifieActivity($id) {
+function modifieActivity($idActivity,$nomActivite) {
     // capture des codes erreurs
     
         // connexion à la base
         $dbh = conexBase();
         // requête pour créer supprimer un article
-        $reponse = $dbh->exec("UPDATE article SET titre='$titre', texte='$texte' WHERE id='$id';");
+        $reponse = $dbh->exec("UPDATE activite SET nomActivite='$nomActivite' WHERE idActivite='$idActivity';");
         
     
     // fermeture connexion à la base
@@ -115,5 +115,15 @@ function afficherMotModifier($idActivity){
     return $article;
 }
 
+
+function deleteActivity($idActivite){
+
+    $dbh = conexBase();
+
+    $reponse = $dbh->exec("DELETE FROM activite WHERE idActivite ='$idActivite';");
+    
+    return $reponse;
+
+}
 
 ?>
